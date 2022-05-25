@@ -1,0 +1,19 @@
+[package]
+name = "aes-prng"
+version = "0.1.0"
+license = "MIT"
+edition = "2021"
+
+[dependencies]
+aes = "0.8"
+byteorder = "1.4"
+rand = { version = "0.8", features = ["std", "std_rng"] }
+
+[dev-dependencies]
+criterion = { version="0.3", features=["async_tokio"] }
+getrandom = "0.2"
+rand_chacha = "0.3"
+
+[[bench]]
+name = "rng"
+harness = false
