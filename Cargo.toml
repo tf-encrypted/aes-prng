@@ -1,8 +1,25 @@
 [package]
 name = "aes-prng"
 version = "0.1.0"
-license = "MIT"
 edition = "2021"
+license = "MIT"
+authors = [
+    "Dragos Rotaru <r.dragos0@gmail.com>",
+    "Morten Dahl <mortendahlcs@gmail.com>",
+]
+description = ""
+keywords = [
+  "cryptography",
+  "random",
+  "prng",
+  "rng",
+  "aes",
+]
+homepage = "https://github.com/tf-encrypted/aes-prng"
+repository = "https://github.com/tf-encrypted/aes-prng"
+documentation = "https://docs.rs/aes-prng"
+license = "MIT/Apache-2.0"
+categories = ["cryptography"]
 
 [dependencies]
 aes = "0.8"
