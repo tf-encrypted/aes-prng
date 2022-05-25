@@ -1,5 +1,5 @@
-use criterion::{criterion_group, criterion_main, Criterion};
 use aes_prng::{AesRng, SEED_SIZE};
+use criterion::{criterion_group, criterion_main, Criterion};
 use rand::{RngCore, SeedableRng};
 use rand_chacha::ChaCha20Rng;
 
