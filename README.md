@@ -1,6 +1,6 @@
 # AES-PRNG
 
-[![Test Status](https://github.com/tf-encrypted/aes-prng/actions/workflows/ci.yml/badge.svg?event=push)](https://github.com/tf-encrypted/aes-prng/actions)
+[![Build Status][build-image]][build-link]
 ![Apache2/MIT licensed][license-image]
 [![Minimum rustc version][rustc-image]][rustc-link]
 
@@ -36,6 +36,9 @@ See [LICENSE-APACHE](LICENSE-APACHE) and [LICENSE-MIT](LICENSE-MIT), and
 
 [//]: # (badges)
 
+
+[build-image]: https://github.com/tf-encrypted/aes-prng/actions/workflows/ci.yml/badge.svg?event=push
+[build-link]: https://github.com/tf-encrypted/aes-prng/actions
 [license-image]: https://img.shields.io/badge/license-Apache2.0/MIT-blue.svg
 [rustc-image]: https://img.shields.io/badge/rustc-1.56+-blue.svg
 [rustc-link]: https://github.com/tf-encrypted/aes-prng#rust-version-requirements
