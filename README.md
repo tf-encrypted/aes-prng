@@ -37,7 +37,7 @@ See [LICENSE-APACHE](LICENSE-APACHE) and [LICENSE-MIT](LICENSE-MIT), and
 [//]: # (badges)
 
 
-[build-image]: https://github.com/tf-encrypted/aes-prng/actions/workflows/ci.yml/badge.svg?event=push
+[build-image]: https://github.com/tf-encrypted/aes-prng/workflows/CI/badge.svg
 [build-link]: https://github.com/tf-encrypted/aes-prng/actions
 [license-image]: https://img.shields.io/badge/license-Apache2.0/MIT-blue.svg
 [rustc-image]: https://img.shields.io/badge/rustc-1.56+-blue.svg
