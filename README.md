@@ -25,7 +25,15 @@ https://github.com/RustCrypto/block-ciphers/tree/master/aes) dependency.
 AES-PRNG is built with the `-Ctarget-feature=+aes` feature enabled by default
 to get the benefit of AES-NI instructions for speeding up the PRNG calls.
 
-# License
+## Releasing
+
+We release manually using [`carge-release`](https://github.com/crate-ci/cargo-release):
+
+```
+$ cargo release minor
+```
+
+## License
 
 AES-PRNG is distributed under the terms of Apache License (Version 2.0).
 
