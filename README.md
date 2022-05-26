@@ -1,7 +1,7 @@
 # AES-PRNG
 
 [![Build Status][build-image]][build-link]
-![Apache2/MIT licensed][license-image]
+![Apache2 License 2.0][license-image]
 [![Minimum rustc version][rustc-image]][rustc-link]
 
 A Rust library for random number generation using AES as the underlying block-cipher.
@@ -27,11 +27,9 @@ to get the benefit of AES-NI instructions for speeding up the PRNG calls.
 
 # License
 
-AES-PRNG is distributed under the terms of both the MIT license and the
-Apache License (Version 2.0).
+AES-PRNG is distributed under the terms of Apache License (Version 2.0).
 
-See [LICENSE-APACHE](LICENSE-APACHE) and [LICENSE-MIT](LICENSE-MIT), and
-[COPYRIGHT](COPYRIGHT) for details.
+See [LICENSE-APACHE](LICENSE-APACHE) for details.
 
 
 [//]: # (badges)
@@ -39,6 +37,6 @@ See [LICENSE-APACHE](LICENSE-APACHE) and [LICENSE-MIT](LICENSE-MIT), and
 
 [build-image]: https://github.com/tf-encrypted/aes-prng/workflows/CI/badge.svg
 [build-link]: https://github.com/tf-encrypted/aes-prng/actions
-[license-image]: https://img.shields.io/badge/license-Apache2.0/MIT-blue.svg
+[license-image]: https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat
 [rustc-image]: https://img.shields.io/badge/rustc-1.56+-blue.svg
 [rustc-link]: https://github.com/tf-encrypted/aes-prng#rust-version-requirements
