@@ -8,7 +8,7 @@ authors = [
   "Dragos Rotaru <r.dragos0@gmail.com>",
   "Morten Dahl <mortendahlcs@gmail.com>",
 ]
-description = ""
+description = "Pseudo-random number generator based on AES"
 keywords = [
   "cryptography",
   "random",
