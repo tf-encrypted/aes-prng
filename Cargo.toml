@@ -2,10 +2,11 @@
 name = "aes-prng"
 version = "0.1.0"
 edition = "2021"
-license = "MIT"
+license = "Apache-2.0"
 authors = [
-    "Dragos Rotaru <r.dragos0@gmail.com>",
-    "Morten Dahl <mortendahlcs@gmail.com>",
+  "TF Encrypted Authors <tfencrypted@gmail.com>",
+  "Dragos Rotaru <r.dragos0@gmail.com>",
+  "Morten Dahl <mortendahlcs@gmail.com>",
 ]
 description = ""
 keywords = [
@@ -18,6 +19,7 @@ keywords = [
 homepage = "https://github.com/tf-encrypted/aes-prng"
 repository = "https://github.com/tf-encrypted/aes-prng"
 documentation = "https://docs.rs/aes-prng"
+readme = "README.md"
 categories = ["cryptography"]
 
 [dependencies]
