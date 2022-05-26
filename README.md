@@ -2,7 +2,7 @@
 
 [![Test Status](https://github.com/tf-encrypted/aes-prng/actions/workflows/ci.yml/badge.svg?event=push)](https://github.com/tf-encrypted/aes-prng/actions)
 ![Apache2/MIT licensed][license-image]
-[![Minimum rustc version][rustc-image][rustc-link]
+[![Minimum rustc version][rustc-image]][rustc-link]
 
 A Rust library for random number generation using AES as the underlying block-cipher.
 
