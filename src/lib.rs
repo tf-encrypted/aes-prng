@@ -275,7 +275,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_prng() {
+    fn test_prng_match_aes() {
         let seed = [0u8; SEED_SIZE];
         let key: Block128 = GenericArray::clone_from_slice(&seed);
         let cipher = Aes128::new(&key);
@@ -308,11 +308,64 @@ mod tests {
         let mut out = [0u8; 16 * 8];
         rng.try_fill_bytes(&mut out).expect("");
 
-        // counter works well
-        assert_eq!(rng.state.used_bytes, 16 * 8);
-
         // encryptions produced initially match aes output
         assert_eq!(rng.state.blocks, blocks);
+    }
+
+    #[test]
+    fn test_prng_vector1() {
+        /*
+            https://www.cosic.esat.kuleuven.be/nessie/testvectors/
+            Set 2, vector#  0:
+            key=00000000000000000000000000000000
+            plain=80000000000000000000000000000000
+            cipher=3AD78E726C1EC02B7EBFE92B23D9EC34
+        */
+        let seed = [0u8; SEED_SIZE];
+
+        let mut rng = AesRng::from_seed(seed);
+        let mut out = [0u8; 16];
+
+        for _ in 0..129 {
+            rng.try_fill_bytes(&mut out).expect("");
+        }
+
+        let expected: [u8; 16] = [
+            58, 215, 142, 114, 108, 30, 192, 43, 126, 191, 233, 43, 35, 217, 236, 52,
+        ];
+        assert_eq!(expected, out);
+    }
+
+    #[test]
+    fn test_prng_vector2() {
+        /*
+            https://www.cosic.esat.kuleuven.be/nessie/testvectors/
+            Set 2, vector#  3:
+            key=00000000000000000000000000000000
+            plain=10000000000000000000000000000000
+            cipher=F5569B3AB6A6D11EFDE1BF0A64C6854A
+        */
+        let seed = [0u8; SEED_SIZE];
+
+        let mut rng = AesRng::from_seed(seed);
+        let mut out = [0u8; 16];
+        for _ in 0..17 {
+            rng.try_fill_bytes(&mut out).expect("");
+        }
+
+        let expected: [u8; 16] = [
+            245, 86, 155, 58, 182, 166, 209, 30, 253, 225, 191, 10, 100, 198, 133, 74,
+        ];
+        assert_eq!(expected, out);
+    }
+
+    #[test]
+    fn test_prng_used_bytes() {
+        let mut rng: AesRng = AesRng::from_random_seed();
+        let mut out = [0u8; 16 * 8];
+        rng.try_fill_bytes(&mut out).expect("");
+
+        assert_eq!(rng.state.used_bytes, 16 * 8);
 
         let _ = rng.next_u32();
         // check used_bytes increments properly
