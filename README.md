@@ -111,7 +111,7 @@ $ cargo release minor
 
 ## License
 
-AES-PRNG is distributed under the terms of Apache License (Version 2.0).
+AES-PRNG is distributed under the terms of Apache License (Version 2.0). Copyright as specified in [NOTICE](./NOTICE).
 
 
 [//]: # (badges)
