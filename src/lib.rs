@@ -183,7 +183,12 @@ impl AesRng {
         self.cipher.encrypt_blocks(&mut self.state.blocks);
     }
 
+    #[deprecated(since = "0.2.0")]
     pub fn generate_random_key() -> [u8; SEED_SIZE] {
+        Self::generate_random_seed()
+    }
+
+    pub fn generate_random_seed() -> [u8; SEED_SIZE] {
         let mut seed = [0u8; SEED_SIZE];
         let mut rng = rand::thread_rng();
         rng.fill_bytes(&mut seed);
@@ -198,7 +203,7 @@ impl AesRng {
     /// first it polls from /dev/random and only switch to /dev/urandom once this has succeeded.
     /// `We always choose failure over returning insecure “random” bytes` from getrandom package
     pub fn from_random_seed() -> Self {
-        let seed = AesRng::generate_random_key();
+        let seed = AesRng::generate_random_seed();
         Self::from_seed(seed)
     }
 
