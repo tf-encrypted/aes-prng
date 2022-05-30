@@ -22,29 +22,28 @@
 //!
 //! // initialize PRNG seed using (true) entropy from ThreadRng
 //! // this internally using syscalls to /dev/random or /dev/urandom
-//! let mut rng: AesRng = AesRng::from_random_seed();
-//! // gets 32 random bits
-//! let output32 = rng.next_u32();
-//! // gets 64 random bits
-//! let output64 = rng.next_u64();
-//! // gets 2 output bytes
-//! let mut out = [0u8; 2];
-//! rng.try_fill_bytes(&mut out).expect("");
+//! let mut rng = AesRng::from_random_seed();
 //!
+//! // sample random bytes
+//! let mut bytes = [0; 1024];
+//! rng.fill_bytes(&mut bytes);
+//!
+//! // sample random u32
+//! let output32 = rng.next_u32();
+//!
+//! // sample random u64
+//! let output64 = rng.next_u64();
 //! ```
 //!
-//! # Usage example for setting manually the PRNG seed
+//! # Usage example for setting manually the seed
 //! ```
 //! use aes_prng::{AesRng, SEED_SIZE};
 //! use rand::{RngCore, SeedableRng};
-//! // seed is full of zeroes here, note this would be insecure
-//! // in an actual implementation
-//! let mut rng = AesRng::from_seed([0u8; SEED_SIZE]);
 //!
-//! // gets 32 random bits
-//! let output32 = rng.next_u32();
-//! // gets 64 random bits
-//! let output64 = rng.next_u64();
+//! // generate fresh seed
+//! let seed = AesRng::generate_random_key();
+//! // seed generator
+//! let mut rng = AesRng::from_seed(seed);
 //! ```
 //!
 //! For implementations of block cipher modes of operation see
