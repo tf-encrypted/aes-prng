@@ -15,6 +15,32 @@ Add this to your `Cargo.toml`:
 aes-prng = "0.1.0"
 ```
 
+## Example
+
+```rust
+use rand::{RngCore, SeedableRng};
+use aes_prng::AesRng;
+
+let mut rng = AesRng::from_random_seed();
+
+// sample random bytes
+let mut bytes = [0; 1024];
+rng.fill_bytes(&mut bytes);
+
+// sample random u32
+let r_u32 = rng.next_u32();
+
+// sample random u64
+let r_u64 = rng.next_u64();
+```
+
+`AesRng` can also be created from an existing seed:
+
+```rust
+let seed = AesRng::generate_random_key();
+let mut rng = AesRng::from_seed(seed);
+```
+
 ### Rust version requirements
 
 AES-PRNG requires **Rustc version 1.56 or greater** due to the [RustCrypto](
