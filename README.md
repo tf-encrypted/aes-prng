@@ -75,6 +75,14 @@ rng_fill/chacha20/1000  time:   [1.8051 ms 1.8100 ms 1.8157 ms]
 rng_fill/aes/1000       time:   [112.58 us 113.03 us 113.49 us]
 ```
 
+## Releasing
+
+We release manually using [`carge-release`](https://github.com/crate-ci/cargo-release):
+
+```
+$ cargo release minor
+```
+
 ## License
 
 AES-PRNG is distributed under the terms of Apache License (Version 2.0).
