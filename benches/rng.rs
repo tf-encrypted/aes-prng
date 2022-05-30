@@ -12,24 +12,28 @@ fn rng_fill(c: &mut Criterion) {
     }
 
     let mut group = c.benchmark_group("rng_fill");
-    for buffer_size in [2 * 1000 * 1000] {
+    for buffer_size in [10, 100, 1000] {
         group.bench_function(BenchmarkId::new("chacha8", buffer_size), |b| {
             let mut rng = ChaCha8Rng::seed_from_u64(42);
+            let buffer_size = buffer_size * 1000;
             rng_bencher(b, &mut rng, buffer_size)
         });
 
         group.bench_function(BenchmarkId::new("chacha12", buffer_size), |b| {
             let mut rng = ChaCha12Rng::seed_from_u64(42);
+            let buffer_size = buffer_size * 1000;
             rng_bencher(b, &mut rng, buffer_size)
         });
 
         group.bench_function(BenchmarkId::new("chacha20", buffer_size), |b| {
             let mut rng = ChaCha20Rng::seed_from_u64(42);
+            let buffer_size = buffer_size * 1000;
             rng_bencher(b, &mut rng, buffer_size)
         });
 
         group.bench_function(BenchmarkId::new("aes", buffer_size), |b| {
             let mut rng = AesRng::from_seed([0u8; SEED_SIZE]);
+            let buffer_size = buffer_size * 1000;
             rng_bencher(b, &mut rng, buffer_size)
         });
     }
