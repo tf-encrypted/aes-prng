@@ -37,7 +37,7 @@ let r_u64 = rng.next_u64();
 `AesRng` can also be created from an existing seed:
 
 ```rust
-let seed = AesRng::generate_random_key();
+let seed = AesRng::generate_random_seed();
 let mut rng = AesRng::from_seed(seed);
 ```
 

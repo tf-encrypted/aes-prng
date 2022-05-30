@@ -41,7 +41,7 @@
 //! use rand::{RngCore, SeedableRng};
 //!
 //! // generate fresh seed
-//! let seed = AesRng::generate_random_key();
+//! let seed = AesRng::generate_random_seed();
 //! // seed generator
 //! let mut rng = AesRng::from_seed(seed);
 //! ```
