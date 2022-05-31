@@ -1,6 +1,7 @@
 # AES-PRNG
 
 [![crate][crate-image]][crate-link]
+[![Docs][docs-image]][docs-link]
 [![Build Status][build-image]][build-link]
 [![Apache2 License 2.0][license-image]][license-link]
 [![Minimum rustc version][rustc-image]][rustc-link]
@@ -121,6 +122,8 @@ AES-PRNG is distributed under the terms of Apache License (Version 2.0). Copyrig
 
 [crate-image]: https://img.shields.io/crates/v/aes-prng.svg
 [crate-link]: https://crates.io/crates/aes-prng
+[docs-image]: https://docs.rs/aes-prng/badge.svg
+[docs-link]: https://docs.rs/aes-prng/
 [build-image]: https://github.com/tf-encrypted/aes-prng/workflows/CI/badge.svg
 [build-link]: https://github.com/tf-encrypted/aes-prng/actions
 [license-image]: https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat
