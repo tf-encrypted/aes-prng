@@ -12,7 +12,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-aes-prng = "0.1"
+aes-prng = "0.2"
 ```
 
 ## Example
