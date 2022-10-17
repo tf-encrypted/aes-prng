@@ -28,7 +28,7 @@ byteorder = "1.4"
 rand = { version = "0.8", features = ["std", "std_rng"] }
 
 [dev-dependencies]
-criterion = { version="0.3" }
+criterion = "0.4"
 getrandom = "0.2"
 rand_chacha = "0.3"
 

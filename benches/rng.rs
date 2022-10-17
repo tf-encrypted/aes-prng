@@ -46,23 +46,23 @@ fn rng_next64(c: &mut Criterion) {
     }
 
     let mut group = c.benchmark_group("rng_next_u64");
-    for n in [1000] {
-        group.bench_function("chacha8", |b| {
+    for n in [100, 1000] {
+        group.bench_function(BenchmarkId::new("chacha8", n), |b| {
             let mut rng = ChaCha8Rng::seed_from_u64(42);
             rng_bencher(b, &mut rng, n)
         });
 
-        group.bench_function("chacha12", |b| {
+        group.bench_function(BenchmarkId::new("chacha12", n), |b| {
             let mut rng = ChaCha12Rng::seed_from_u64(42);
             rng_bencher(b, &mut rng, n)
         });
 
-        group.bench_function("chacha20", |b| {
+        group.bench_function(BenchmarkId::new("chacha20", n), |b| {
             let mut rng = ChaCha20Rng::seed_from_u64(42);
             rng_bencher(b, &mut rng, n)
         });
 
-        group.bench_function("aes", |b| {
+        group.bench_function(BenchmarkId::new("aes", n), |b| {
             let mut rng = AesRng::from_seed([0u8; SEED_SIZE]);
             rng_bencher(b, &mut rng, n)
         });
