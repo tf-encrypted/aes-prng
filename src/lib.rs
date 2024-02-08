@@ -77,6 +77,7 @@ pub type RngSeed = [u8; SEED_SIZE];
 type Block128 = GenericArray<u8, U16>;
 type Block128x8 = GenericArray<Block128, U8>;
 
+#[derive(Clone)]
 pub struct AesRngState {
     blocks: Block128x8,
     next_index: u128,
@@ -141,6 +142,7 @@ impl AesRngState {
 }
 
 /// Necessary data to compute randomness, a state and an initialized AES blockcipher.
+#[derive(Clone)]
 pub struct AesRng {
     state: AesRngState,
     cipher: Aes128,
@@ -383,5 +385,13 @@ mod tests {
         // test whether two consecutive calls can be done
         let _ = rng.next_u32();
         let _ = rng.next_u64();
+    }
+
+    #[test]
+    fn test_cloned_prng() {
+        let mut rng1: AesRng = AesRng::from_random_seed();
+        let mut rng2 = rng1.clone();
+
+        assert_eq!(rng1.next_u32(), rng2.next_u32());
     }
 }
