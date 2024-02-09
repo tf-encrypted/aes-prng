@@ -157,7 +157,7 @@ impl SeedableRng for AesRng {
     /// to be used few times, by default we should go with AesRng::from_random_seed
     #[inline]
     fn from_seed(seed: Self::Seed) -> Self {
-        let key = GenericArray::clone_from_slice(&seed);
+        let key = GenericArray::from(seed);
         let mut out = AesRng {
             state: AesRngState::default(),
             cipher: Aes128::new(&key),
