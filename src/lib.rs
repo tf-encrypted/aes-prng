@@ -72,6 +72,7 @@ const PIPELINES_U128: u128 = 8;
 const PIPELINES_USIZE: usize = 8;
 const STATE_SIZE: usize = PIPELINES_USIZE * AES_BLK_SIZE;
 pub const SEED_SIZE: usize = AES_BLK_SIZE;
+pub const IV_SIZE: usize = AES_BLK_SIZE;
 pub type RngSeed = [u8; SEED_SIZE];
 
 type Block128 = GenericArray<u8, U16>;
@@ -218,6 +219,21 @@ impl AesRng {
         let result: u8 = (self.cached_bits & 1) as u8;
         self.cached_bits >>= 1;
         result
+    }
+
+    pub fn from_seed_and_iv(seed: RngSeed, iv: [u8; IV_SIZE]) -> Self {
+        let key = GenericArray::from(seed);
+        let mut out = AesRng {
+            state: AesRngState {
+                next_index: LittleEndian::read_u128(&iv),
+                ..Default::default()
+            },
+            cipher: Aes128::new(&key),
+            n_cached_bits: 0,
+            cached_bits: 0,
+        };
+        out.init();
+        out
     }
 }
 
@@ -393,5 +409,14 @@ mod tests {
         let mut rng2 = rng1.clone();
 
         assert_eq!(rng1.next_u32(), rng2.next_u32());
+    }
+
+    #[test]
+    fn test_iv_xof() {
+        let seed = [0u8; SEED_SIZE];
+        let mut rng = AesRng::from_seed(seed);
+
+        let mut xof = AesRng::from_seed_and_iv(seed, seed);
+        assert_eq!(rng.next_u32(), xof.next_u32());
     }
 }
