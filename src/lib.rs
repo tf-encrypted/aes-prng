@@ -63,7 +63,7 @@ use aes::cipher::generic_array::{typenum::U16, typenum::U8, GenericArray};
 use aes::cipher::{BlockEncrypt, KeyInit};
 use aes::Aes128;
 use byteorder::{ByteOrder, LittleEndian};
-use rand::{CryptoRng, Error, RngCore, SeedableRng};
+use rand::{CryptoRng, RngCore, SeedableRng};
 use std::mem;
 use std::slice;
 
@@ -191,7 +191,7 @@ impl AesRng {
 
     pub fn generate_random_seed() -> [u8; SEED_SIZE] {
         let mut seed = [0u8; SEED_SIZE];
-        let mut rng = rand::thread_rng();
+        let mut rng = rand::rng();
         rng.fill_bytes(&mut seed);
         seed
     }
@@ -267,11 +267,6 @@ impl RngCore for AesRng {
             .copy_from_slice(&self.state.as_mut_bytes()[src_start..src_start + remainder]);
         self.state.used_bytes += remainder;
     }
-
-    fn try_fill_bytes(&mut self, dest: &mut [u8]) -> Result<(), Error> {
-        self.fill_bytes(dest);
-        Ok(())
-    }
 }
 
 impl CryptoRng for AesRng {}
@@ -312,7 +307,7 @@ mod tests {
 
         let mut rng = AesRng::from_seed(seed);
         let mut out = [0u8; 16 * 8];
-        rng.try_fill_bytes(&mut out).expect("");
+        rng.fill_bytes(&mut out);
 
         // encryptions produced initially match aes output
         assert_eq!(rng.state.blocks, blocks);
@@ -333,7 +328,7 @@ mod tests {
         let mut out = [0u8; 16];
 
         for _ in 0..129 {
-            rng.try_fill_bytes(&mut out).expect("");
+            rng.fill_bytes(&mut out);
         }
 
         let expected: [u8; 16] = [
@@ -356,7 +351,7 @@ mod tests {
         let mut rng = AesRng::from_seed(seed);
         let mut out = [0u8; 16];
         for _ in 0..17 {
-            rng.try_fill_bytes(&mut out).expect("");
+            rng.fill_bytes(&mut out);
         }
 
         let expected: [u8; 16] = [
@@ -369,7 +364,7 @@ mod tests {
     fn test_prng_used_bytes() {
         let mut rng: AesRng = AesRng::from_random_seed();
         let mut out = [0u8; 16 * 8];
-        rng.try_fill_bytes(&mut out).expect("");
+        rng.fill_bytes(&mut out);
 
         assert_eq!(rng.state.used_bytes, 16 * 8);
 
